@@ -5,7 +5,6 @@ class Deck
   include Enumerable
 
   def initialize
-
     @cards = [
       Card.new("Spade", "Ace"),
       Card.new("Spade", "Two"),
@@ -60,13 +59,16 @@ class Deck
       Card.new("Diamond", "Queen"),
       Card.new("Diamond", "King"),
     ]
-
   end
 
   def each(&block)
     @cards.each do |card|
       block.call(card)
     end
+  end
+
+  def shuffle!
+    @cards.shuffle!
   end
 
   def pop

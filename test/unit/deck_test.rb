@@ -27,6 +27,11 @@ class DeckTest < Test::Unit::TestCase
     assert_instance_of(Card,deck.pop)
   end
 
+  def test_shuffle_deck
+    deck = Deck.new
+    deck.shuffle!
+  end
+
   def test_deck_contains_correct_cards
     deck = Deck.new
 
