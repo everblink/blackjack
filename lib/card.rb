@@ -1,11 +1,16 @@
 class Card
 
   def initialize(suit, rank)
-    @type = rank + suit
+    @rank = rank.downcase
+    @suit = suit.downcase
   end
 
-  def get_type
-    @type
+  def ==(y)
+    to_s == y.to_s
+  end
+
+  def to_s
+    @rank + '_' + @suit
   end
 
 end

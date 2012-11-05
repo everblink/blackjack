@@ -15,7 +15,6 @@ class DeckTest < Test::Unit::TestCase
     deck = Deck.new
     cards = Array.new
 
-    #TODO need to make sure that it checks the card's uniqueness
     deck.each do |c|
       cards << c
     end
@@ -31,73 +30,64 @@ class DeckTest < Test::Unit::TestCase
   def test_deck_contains_correct_cards
     deck = Deck.new
 
-    expected = Array.new
-    expected << "AceSpade"
-    expected << "OneSpade"
-    expected << "TwoSpade"
-    expected << "ThreeSpade"
-    expected << "FourSpade"
-    expected << "FiveSpade"
-    expected << "SixSpade"
-    expected << "SevenSpade"
-    expected << "EightSpade"
-    expected << "NineSpade"
-    expected << "TenSpade"
-    expected << "JackSpade"
-    expected << "QueenSpade"
-    expected << "KingSpade"
+    expected_cards = %w(
+      ace_spade
+      one_spade
+      two_spade
+      three_spade
+      four_spade
+      five_spade
+      six_spade
+      seven_spade
+      eight_spade
+      nine_spade
+      ten_spade
+      jack_spade
+      queen_spade
+      king_spade
+      ace_heart
+      two_heart
+      three_heart
+      four_heart
+      five_heart
+      six_heart
+      seven_heart
+      eight_heart
+      nine_heart
+      ten_heart
+      jack_heart
+      queen_heart
+      king_heart
+      ace_diamond
+      two_diamond
+      three_diamond
+      four_diamond
+      five_diamond
+      six_diamond
+      seven_diamond
+      eight_diamond
+      nine_diamond
+      ten_diamond
+      jack_diamond
+      queen_diamond
+      king_diamond
+      ace_club
+      two_club
+      three_club
+      four_club
+      five_club
+      six_club
+      seven_club
+      eight_club
+      nine_club
+      ten_club
+      jack_club
+      queen_club
+      king_club)
 
-    expected << "AceHeart"
-    expected << "OneHeart"
-    expected << "TwoHeart"
-    expected << "ThreeHeart"
-    expected << "FourHeart"
-    expected << "FiveHeart"
-    expected << "SixHeart"
-    expected << "SevenHeart"
-    expected << "EightHeart"
-    expected << "NineHeart"
-    expected << "TenHeart"
-    expected << "JackHeart"
-    expected << "QueenHeart"
-    expected << "KingHeart"
-
-    expected << "AceDiamond"
-    expected << "OneDiamond"
-    expected << "TwoDiamond"
-    expected << "ThreeDiamond"
-    expected << "FourDiamond"
-    expected << "FiveDiamond"
-    expected << "SixDiamond"
-    expected << "SevenDiamond"
-    expected << "EightDiamond"
-    expected << "NineDiamond"
-    expected << "TenDiamond"
-    expected << "JackDiamond"
-    expected << "QueenDiamond"
-    expected << "KindDiamond"
-
-    expected << "AceClub"
-    expected << "OneClub"
-    expected << "TwoClub"
-    expected << "ThreeClub"
-    expected << "FourClub"
-    expected << "FiveClub"
-    expected << "SixClub"
-    expected << "SevenClub"
-    expected << "EightClub"
-    expected << "NineClub"
-    expected << "TenClub"
-    expected << "JackClub"
-    expected << "QueenClub"
-    expected << "KindClub"
-
-    found = false
     deck.each do |c|
-      found = true if c.get_type == expected
+      assert(expected_cards.include?(c.to_s))
     end
-
-    assert_equal(true, found)
   end
 
 end
