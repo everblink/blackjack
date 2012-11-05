@@ -1,5 +1,23 @@
 class Deck
-  def count
-    52
+
+  include Enumerable
+
+  def initialize
+
+    @cards = Array.new
+    (1..52).each do
+      @cards << Card.new
+    end
   end
+
+  def each(&block)
+    @cards.each do |card|
+      block.call(card)
+    end
+  end
+
+  def pop
+    @cards.pop
+  end
+
 end
