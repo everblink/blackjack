@@ -5,8 +5,9 @@ class Deck
   def initialize
 
     @cards = Array.new
+
     (1..52).each do
-      @cards << Card.new
+      @cards << Card.new("Spade","Ace")
     end
   end
 
