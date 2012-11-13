@@ -8,5 +8,4 @@ class Game
     @players << player
     "Please make your bet"
   end
-
 end
