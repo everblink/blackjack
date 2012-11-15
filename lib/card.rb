@@ -1,5 +1,4 @@
 class Card
-
   def initialize(suit, rank)
     @rank = rank.downcase
     @suit = suit.downcase
@@ -12,5 +11,4 @@ class Card
   def to_s
     @rank + '_' + @suit
   end
-
 end

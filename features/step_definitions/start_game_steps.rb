@@ -1,26 +1,21 @@
-# encoding: utf-8
-
 include Test::Unit::Assertions
 
-CAPTURE_CASH_AMOUNT = Transform /^£(\d+)$/ do |digits|
-  digits.to_i
-end
-
-Given /^There are no players in the game$/ do
-  the_game
+Given /^The dealer is ready$/ do
+  dealer_status = the_game.dealer_status
+  assert_equal("ready", dealer_status)
 end
 
 When /^a player chooses to play$/ do
-  @instruction = the_game.join the_player
+  the_game.join the_player
 end
 
 Then /^the player will be prompted to place a wager$/ do
-  assert_equal('Please make your bet', @instruction)
+  dealer_status = the_game.dealer_status
+  assert_equal('Please make your bet', dealer_status)
 end
 
 Given /^The wager is (#{CAPTURE_CASH_AMOUNT}) to play$/ do |amount|
-  @wager = Wager.new(amount)
-  assert_equal(amount, @wager.amount)
+  assert_equal(amount, the_game.minimum_bet)
 end
 
 When /^the player has (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
