@@ -1,10 +1,12 @@
 class Player
-  @balance = 0
-  def player_balance
+  attr_accessor :balance
+
+  def initialize
     @balance = 1000
   end
 
-  def update_player_balance(player_balance,wager_to_play)
-    @balance = player_balance - wager_to_play
+  def bet(game, amount)
+    game.place_bet(amount)
+    @balance -= amount
   end
 end

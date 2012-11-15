@@ -1,5 +1,7 @@
 class Wager
-  def what_is_the_wager(value)
-    value
+  attr_reader :amount
+
+  def initialize(amount)
+    @amount = amount
   end
 end

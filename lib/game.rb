@@ -8,4 +8,8 @@ class Game
     @players << player
     "Please make your bet"
   end
+
+  def place_bet(amount)
+
+  end
 end
