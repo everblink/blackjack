@@ -1,38 +1,32 @@
-# encoding: utf-8
-
-require "test/unit"
-require "./lib/game"
-require "./lib/player"
-require "./lib/wager"
-
 include Test::Unit::Assertions
 
-Given /^There are no players in the game$/ do
-  @game = Game.new
+Given /^The dealer is ready$/ do
+  dealer_status = the_game.dealer_status
+  assert_equal("ready", dealer_status)
 end
 
 When /^a player chooses to play$/ do
-  player = Player.new
-  @instruction = @game.join player
+  the_game.join the_player
 end
 
 Then /^the player will be prompted to place a wager$/ do
-  assert_equal('Please make your bet', @instruction)
+  dealer_status = the_game.dealer_status
+  assert_equal('Please make your bet', dealer_status)
 end
 
-Given /^The wager is £(\d+) to play$/ do |arg1|
-  wager = Wager.new
-  @wager_to_play = wager.what_is_the_wager(100)
-  assert_equal(100,wager.what_is_the_wager(100))
+Given /^The wager is (#{CAPTURE_CASH_AMOUNT}) to play$/ do |amount|
+  assert_equal(amount, the_game.minimum_bet)
 end
 
-When /^the player has £(\d+)$/ do |arg1|
-  player = Player.new
-  @player_balance = player.player_balance
-  assert_equal(1000,player.player_balance)
+When /^the player has (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
+  assert_equal(amount, the_player.balance)
 end
 
-Then /^take away the wager away from the player's balance$/ do
-  player = Player.new
-  assert_equal(900,player.update_player_balance(@player_balance,@wager_to_play))
+When /^the player bets (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
+  the_player.bet(the_game, amount)
 end
+
+Then /^the players balance will be (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
+  assert_equal(amount, the_player.balance)
+end
+
